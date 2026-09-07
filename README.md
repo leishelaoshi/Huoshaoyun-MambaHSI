@@ -132,8 +132,8 @@ outputs/paper_run/
 
 ## Comparative models
 
-The manuscript also reports 3D CNN, HybridSN, ViT, SpectralFormer, and SSFTT. This repository does not replace their original implementations with approximations. Use `scripts/07_export_outer_folds.py` to export the exact outer splits for consistent comparison. See `comparisons/README.md`.
+The manuscript also reports 3D CNN, HybridSN, ViT, SpectralFormer, and SSFTT. This repository does not replace their original implementations with approximations.Use scripts/07_export_outer_folds.py to export the spatially controlled outer splits generated from the input samples for consistent model comparison.
 
 ## Important implementation note
 
-The model implementation in `src/huoshaoyun_mambahsi/model.py` preserves the batch dimension and uses size-safe 2×2 average pooling so that 1×1, 3×3, 5×5, and 7×7 inputs can be evaluated directly.
+To enable direct evaluation of the 1×1, 3×3, 5×5, and 7×7 spatial inputs used in the patch-size experiment, the implementation applies 2×2 average pooling only when the current spatial feature map is at least 2×2. The remaining MambaHSI architecture and training procedure are unchanged.
