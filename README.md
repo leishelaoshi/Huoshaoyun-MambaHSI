@@ -132,7 +132,7 @@ outputs/paper_run/
 
 ## Comparative models
 
-The manuscript also reports 3D CNN, HybridSN, ViT, SpectralFormer, and SSFTT. This repository does not replace their original implementations with approximations.Use scripts/07_export_outer_folds.py to export the spatially controlled outer splits generated from the input samples for consistent model comparison.
+The manuscript also reports 3D CNN, HybridSN, ViT, SpectralFormer, and SSFTT..Use scripts/07_export_outer_folds.py to export the spatially controlled outer splits generated from the input samples for consistent model comparison.
 
 ## Important implementation note
 
