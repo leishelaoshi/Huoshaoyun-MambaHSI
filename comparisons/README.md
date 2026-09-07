@@ -1,9 +1,21 @@
 # Comparative models
 
-The manuscript compares MambaHSI with 3D CNN, HybridSN, ViT, SpectralFormer, and SSFTT.
+The manuscript compares MambaHSI with five representative hyperspectral classification models: 3D CNN, HybridSN, ViT, SpectralFormer, and SSFTT.
 
-The exact implementations of these comparative architectures are not redistributed in this repository. This repository therefore focuses on reproducibility of the MambaHSI workflow and provides the experimental protocol and spatially controlled data splits required for consistent model comparison.
+The comparative models are established methods with publicly available implementations or implementation resources associated with their original publications. To avoid redistributing third-party code and to preserve consistency with the original implementations, their source code is not included in this repository.
 
-Use `scripts/07_export_outer_folds.py` to export the outer buffered-LOOCV sample splits. Comparative models should use the same sample definitions, selected patch size, evaluation metrics, and independent hyperparameter optimization protocol described in the manuscript.
+Researchers may obtain the corresponding implementations from the original authors or official/public repositories and evaluate them using the same experimental protocol adopted in this study.
 
-The absence of the comparative-model source code should not be interpreted as a reimplementation of those published architectures.
+For reproducible comparison, this repository provides:
+
+- the same sample definition;
+- the same selected spatial patch size;
+- the same spatially controlled outer folds;
+- the same evaluation metrics;
+- the same independent hyperparameter-optimization strategy.
+
+The outer buffered-LOOCV splits used for model comparison can be exported using:
+
+`python scripts/07_export_outer_folds.py --config configs/paper_protocol.yaml`
+
+Any comparative model can therefore be evaluated under the same data partitions and evaluation protocol used for MambaHSI.
