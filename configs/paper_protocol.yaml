@@ -1,0 +1,50 @@
+paths:
+  enmap_raster: data/processed/enmap_217_preprocessed.dat
+  positive_roi: data/roi/ROI_1.shp
+  negative_roi: data/roi/ROI_0.shp
+  output_dir: outputs/paper_run
+
+input:
+  expected_bands: 217
+
+samples:
+  samples_per_class: 46
+  all_touched: false
+  seed: 42
+
+model:
+  hidden_dim: 64
+  token_num: 4
+  group_num: 4
+  d_state: 16
+  d_conv: 4
+  expand: 2
+  patch_candidates: [1, 3, 5, 7]
+  patch_selection_metric: OA
+
+training:
+  seed: 42
+  outer_buffer_radius_pixels: 6
+  inner_splits: 3
+  inner_spatial_block_pixels: 6
+  optuna_trials_per_outer_fold: 10
+  deployment_optuna_trials: 10
+  learning_rate_min: 1.0e-5
+  learning_rate_max: 1.0e-3
+  batch_size_candidates: [4, 8, 16]
+  weight_decay_min: 1.0e-5
+  weight_decay_max: 1.0e-3
+  tuning_epochs: 20
+  training_epochs: 100
+  optimizer: AdamW
+  scheduler: CosineAnnealingLR
+  loss: CrossEntropyLoss
+  gradient_clip_norm: 5.0
+  threshold: 0.5
+  num_workers: 0
+  inference_batch_size: 1024
+
+experiments:
+  sensitivity_fractions: [0.25, 0.50, 0.75, 1.00]
+  sensitivity_repeats: 3
+  geometric_augmentation: none
